@@ -1,25 +1,22 @@
 [package]
-authors = ["Jorge Aparicio <jorge@japaric.io>"]
+authors = ["David Tibbetts <spatulaninja@gmail.com>"]
 categories = ["embedded", "hardware-support", "no-std"]
-description = "Board Support Crate for the STM32F3DISCOVERY"
-documentation = "https://docs.rs/f3"
+description = "Board Support Crate for the STM32F4DISCOVERY"
+documentation = "https://docs.rs/f4"
 keywords = ["arm", "cortex-m", "stm32"]
 license = "MIT OR Apache-2.0"
-name = "f3"
-repository = "https://github.com/japaric/f3"
-version = "0.6.1"
+name = "f4"
+repository = "https://github.com/DTibbs/f4"
+version = "0.0.1"
 
 [dependencies]
-l3gd20 = "0.2.0"
-lsm303dlhc = "0.2.0"
-stm32f30x-hal = "0.2.0"
+stm32f4xx-hal = "0.2.0"
 
 [dev-dependencies]
 aligned = "0.2.0"
 cortex-m = "0.5.0"
 cortex-m-rt = "0.5.0"
 cortex-m-semihosting = "0.3.0"
-madgwick = "0.1.1"
 panic-semihosting = "0.3.0"
 
 [dev-dependencies.byteorder]
@@ -37,12 +34,12 @@ version = "0.1.3"
 [dev-dependencies.nb]
 version = "0.1.1"
 
-[dev-dependencies.stm32f30x-hal]
+[dev-dependencies.stm32f4xx-hal]
 version = "0.2.0"
-features = ["rt"]
+features = ["rt", "stm32f407"]
 
 [features]
-rt = ["stm32f30x-hal/rt"]
+rt = ["stm32f4xx-hal/rt"]
 
 [profile.release]
 codegen-units = 1

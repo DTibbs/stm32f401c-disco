@@ -1,14 +1,14 @@
-[![Build status](https://travis-ci.org/japaric/f3.svg?branch=master)](https://travis-ci.org/japaric/f3)
-[![crates.io](https://img.shields.io/crates/d/f3.svg)](https://crates.io/crates/f3)
-[![crates.io](https://img.shields.io/crates/v/f3.svg)](https://crates.io/crates/f3)
+[![Build status](https://travis-ci.org/DTibbs/f4.svg?branch=master)](https://travis-ci.org/DTibbs/f4)
+[![crates.io](https://img.shields.io/crates/d/f4.svg)](https://crates.io/crates/f4)
+[![crates.io](https://img.shields.io/crates/v/f4.svg)](https://crates.io/crates/f4)
 
-# `f3`
+# `f4`
 
-> Board Support Crate for the STM32F3DISCOVERY
+> **THIS IS A WORK IN PROGRESS** Board Support Crate for the STM32F4DISCOVERY (Based on Board Support Crate for STM32F3DISCOVERY)
 
-[STM32F3DISCOVERY]: http://www.st.com/en/evaluation-tools/stm32f3discovery.html
+[STM32F4DISCOVERY]: http://www.st.com/en/evaluation-tools/stm32f4discovery.html
 
-## [Documentation](https://docs.rs/f3)
+## [Documentation](https://docs.rs/f4)
 
 ## [Change log](CHANGELOG.md)
 

@@ -12,10 +12,6 @@ main() {
         roulette
         serial
         serial-echo
-        l3gd20
-        lsm303dlhc
-        log-sensors
-        madgwick
     )
 
     rm -rf src/examples

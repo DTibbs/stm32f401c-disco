@@ -9,7 +9,7 @@
 //! #[macro_use(entry, exception)]
 //! extern crate cortex_m_rt as rt;
 //! extern crate cortex_m_semihosting as semihosting;
-//! extern crate f3;
+//! extern crate f4;
 //! extern crate panic_semihosting;
 //! 
 //! use core::fmt::Write;

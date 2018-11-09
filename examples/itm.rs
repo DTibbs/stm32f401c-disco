@@ -18,7 +18,7 @@
 
 #[macro_use]
 extern crate cortex_m;
-extern crate f3;
+extern crate f4;
 extern crate panic_semihosting;
 #[macro_use(entry, exception)]
 extern crate cortex_m_rt as rt;

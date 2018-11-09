@@ -7,20 +7,20 @@
 extern crate cortex_m;
 #[macro_use(entry, exception)]
 extern crate cortex_m_rt as rt;
-extern crate f3;
+extern crate f4;
 extern crate panic_semihosting;
 
-use f3::hal::delay::Delay;
-use f3::hal::prelude::*;
-use f3::hal::stm32f30x;
-use f3::led::Led;
+use f4::hal::delay::Delay;
+use f4::hal::prelude::*;
+use f4::hal::stm32f4;
+use f4::led::Led;
 use rt::ExceptionFrame;
 
 entry!(main);
 
 fn main() -> ! {
     let cp = cortex_m::Peripherals::take().unwrap();
-    let dp = stm32f30x::Peripherals::take().unwrap();
+    let dp = stm32f4::Peripherals::take().unwrap();
 
     let mut flash = dp.FLASH.constrain();
     let mut rcc = dp.RCC.constrain();

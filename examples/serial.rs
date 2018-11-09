@@ -9,21 +9,21 @@
 extern crate cortex_m;
 #[macro_use(entry, exception)]
 extern crate cortex_m_rt as rt;
-extern crate f3;
+extern crate f4;
 #[macro_use(block)]
 extern crate nb;
 extern crate panic_semihosting;
 
 use cortex_m::asm;
-use f3::hal::prelude::*;
-use f3::hal::serial::Serial;
-use f3::hal::stm32f30x;
+use f4::hal::prelude::*;
+use f4::hal::serial::Serial;
+use f4::hal::stm32f4;
 use rt::ExceptionFrame;
 
 entry!(main);
 
 fn main() -> ! {
-    let p = stm32f30x::Peripherals::take().unwrap();
+    let p = stm32f4::Peripherals::take().unwrap();
 
     let mut flash = p.FLASH.constrain();
     let mut rcc = p.RCC.constrain();

@@ -8,13 +8,13 @@
 //! $ # if you don't have the clone subcommand
 //! $ cargo install cargo-clone
 //!
-//! $ cargo clone f3 --vers 0.6.0
+//! $ cargo clone f4 --vers 0.0.1
 //!
 //! # on another terminal
-//! $ openocd -f interface/stlink-v2-1.cfg -f target/stm32f3x.cfg
+//! $ openocd -f interface/stlink-v2-1.cfg -f target/stm32f4x.cfg
 //!
 //! # flash and debug the "Hello, world" example
-//! $ cd f3
+//! $ cd f4
 //! $ rustup target add thumbv7em-none-eabihf
 //! $ cargo run --example hello
 //! ```
@@ -40,23 +40,29 @@
 #![deny(warnings)]
 #![no_std]
 
-pub extern crate l3gd20;
-pub extern crate lsm303dlhc;
-pub extern crate stm32f30x_hal as hal;
+// TODO: add driver crates for LIS3x and CS43L22 here when they're ready
+pub extern crate stm32f4xx_hal as hal;
 
-use hal::gpio::gpioa::{PA5, PA6, PA7};
-use hal::gpio::gpiob::{PB6, PB7};
-use hal::gpio::gpioe::PE3;
-use hal::gpio::{AF4, AF5, Output, PushPull};
-use hal::i2c::I2c;
-use hal::spi::Spi;
-use hal::stm32f30x::{I2C1, SPI1};
+//use hal::gpio::gpioa::{PA5, PA6, PA7};
+//use hal::gpio::gpiob::{PB6, PB7};
+//use hal::gpio::gpioe::PE3;
+//use hal::gpio::{AF4, AF5, Output, PushPull};
+//use hal::i2c::I2c;
+//use hal::spi::Spi;
+// TODO: Use I2S for the CS43L22
+//use hal::stm32f4::{I2C1, SPI1};
 
 pub mod examples;
 pub mod led;
 
-/// On board L3GD20 connected to the SPI1 bus via the pins PA5, PA6, PA7 and PE3
-pub type L3gd20 = l3gd20::L3gd20<Spi<SPI1, (PA5<AF5>, PA6<AF5>, PA7<AF5>)>, PE3<Output<PushPull>>>;
+// On board LIS302DL(revB) or LIS3DSH(revC) connected to the SPI1 bus via the pins PA5, PA6, PA7 and PE3
+// TODO!
+//#[config(feature=revB)]
+//pub type LIS302DL = lis302dl::lis302dl<Spi<SPI1, (PA5<AF5>, PA6<AF5>, PA7<AF5>)>, PE3<Output<PushPull>>>;
+//#[config(feature=revC)]
+//pub type LIS3DSH = lis3dsh::lis3dsh<Spi<SPI1, (PA5<AF5>, PA6<AF5>, PA7<AF5>)>, PE3<Output<PushPull>>>;
 
-/// On board LSM303DLHC connected to the I2C1 bus via the PB6 and PB7 pins
-pub type Lsm303dlhc = lsm303dlhc::Lsm303dlhc<I2c<I2C1, (PB6<AF4>, PB7<AF4>)>>;
+
+// On board CS43L22 controlled through I2C1 and processes digital signals through I2S3
+// TODO!
+//pub type CS43L22 = cs43l22::cs43l22<i2c<I2C1, 
