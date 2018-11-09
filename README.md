@@ -1,6 +1,5 @@
 [![Build status](https://travis-ci.org/DTibbs/f4.svg?branch=master)](https://travis-ci.org/DTibbs/f4)
-[![crates.io](https://img.shields.io/crates/d/f4.svg)](https://crates.io/crates/f4)
-[![crates.io](https://img.shields.io/crates/v/f4.svg)](https://crates.io/crates/f4)
+TODO: Crates.io 
 
 # `f4`
 
