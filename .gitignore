@@ -4,3 +4,5 @@
 Cargo.lock
 Pipfile.lock
 target/
+build/
+*.user
