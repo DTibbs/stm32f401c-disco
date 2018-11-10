@@ -1,9 +1,11 @@
-[![Build status](https://travis-ci.org/DTibbs/f4.svg?branch=master)](https://travis-ci.org/DTibbs/f4)
+[![Build status](https://travis-ci.org/DTibbs/f4.svg?branch=staging)](https://travis-ci.org/DTibbs/f4)
 TODO: Crates.io 
 
 # `f4`
 
-> **THIS IS A WORK IN PROGRESS** Board Support Crate for the STM32F4DISCOVERY (Based on Board Support Crate for STM32F3DISCOVERY)
+> Board Support Crate for the STM32F4DISCOVERY (Based on Board Support Crate for STM32F3DISCOVERY)
+
+**THIS IS A WORK IN PROGRESS**
 
 [STM32F4DISCOVERY]: http://www.st.com/en/evaluation-tools/stm32f4discovery.html
 
