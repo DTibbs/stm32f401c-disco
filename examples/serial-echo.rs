@@ -12,30 +12,35 @@ extern crate cortex_m_rt as rt;
 extern crate f4;
 #[macro_use(block)]
 extern crate nb;
-extern crate panic_semihosting;
+extern crate panic_halt;
 
 use f4::hal::prelude::*;
-use f4::hal::serial::Serial;
-use f4::hal::stm32f4;
+use f4::hal::serial::{config, Serial};
+use f4::hal::stm32f4::stm32f401;
 use rt::ExceptionFrame;
 
 entry!(main);
 
 fn main() -> ! {
-    let p = stm32f4::Peripherals::take().unwrap();
+    let p = stm32f401::Peripherals::take().unwrap();
 
-    let mut flash = p.FLASH.constrain();
-    let mut rcc = p.RCC.constrain();
-    let mut gpioa = p.GPIOA.split(&mut rcc.ahb);
+    //let mut flash = p.FLASH.constrain();
+    let rcc = p.RCC.constrain();
+    let gpioa = p.GPIOA.split();
 
-    let clocks = rcc.cfgr.freeze(&mut flash.acr);
+    let clocks = rcc.cfgr.freeze();
 
-    let tx = gpioa.pa9.into_af7(&mut gpioa.moder, &mut gpioa.afrh);
-    let rx = gpioa.pa10.into_af7(&mut gpioa.moder, &mut gpioa.afrh);
+    let tx = gpioa.pa9.into_alternate_af7();
+    let rx = gpioa.pa10.into_alternate_af7();
 
-    let serial = Serial::usart1(p.USART1, (tx, rx), 115_200.bps(), clocks, &mut rcc.apb2);
+    let config = config::Config::default()
+        .baudrate(115_200.bps())
+        .parity_none()
+        .wordlength_8()
+        .stopbits(config::StopBits::STOP1);
+    let serial = Serial::usart1(p.USART1, (tx, rx), config, clocks).unwrap();
     let (mut tx, mut rx) = serial.split();
-
+    
     loop {
         let byte = block!(rx.read()).unwrap();
         block!(tx.write(byte)).ok();
