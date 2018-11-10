@@ -8,11 +8,11 @@
 extern crate cortex_m_rt as rt;
 extern crate cortex_m;
 extern crate f4;
-extern crate panic_semihosting;
+extern crate panic_halt;
 
 use f4::hal::delay::Delay;
 use f4::hal::prelude::*;
-use f4::hal::stm32f4;
+use f4::hal::stm32f4::stm32f401;
 use f4::led::Leds;
 use rt::ExceptionFrame;
 
@@ -20,18 +20,18 @@ entry!(main);
 
 fn main() -> ! {
     let cp = cortex_m::Peripherals::take().unwrap();
-    let dp = stm32f4::Peripherals::take().unwrap();
+    let dp = stm32f401::Peripherals::take().unwrap();
 
-    let mut flash = dp.FLASH.constrain();
-    let mut rcc = dp.RCC.constrain();
-    let gpioe = dp.GPIOE.split(&mut rcc.ahb);
+    //let mut flash = dp.FLASH.constrain();
+    let rcc = dp.RCC.constrain();
+    let gpiod = dp.GPIOD.split();
 
     // clock configuration using the default settings (all clocks run at 8 MHz)
-    let clocks = rcc.cfgr.freeze(&mut flash.acr);
+    //let clocks = rcc.cfgr.freeze(&mut flash.acr);
     // TRY this alternate clock configuration (all clocks run at 16 MHz)
-    // let clocks = rcc.cfgr.sysclk(16.mhz()).freeze(&mut flash.acr);
+    let clocks = rcc.cfgr.sysclk(16.mhz()).freeze();
 
-    let mut leds = Leds::new(gpioe);
+    let mut leds = Leds::new(gpiod);
     let mut delay = Delay::new(cp.SYST, clocks);
 
     let n = leds.len();

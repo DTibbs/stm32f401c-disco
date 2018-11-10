@@ -8,7 +8,7 @@
 extern crate cortex_m_rt as rt;
 extern crate cortex_m_semihosting as semihosting;
 extern crate f4;
-extern crate panic_semihosting;
+extern crate panic_halt;
 
 use core::fmt::Write;
 

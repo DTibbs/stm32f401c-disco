@@ -7,22 +7,21 @@
 extern crate f4;
 #[macro_use(entry, exception)]
 extern crate cortex_m_rt as rt;
-extern crate panic_semihosting;
+extern crate panic_halt;
 
 use f4::hal::prelude::*;
-use f4::hal::stm32f4;
+use f4::hal::stm32f4::stm32f401;
 use f4::led::Leds;
 use rt::ExceptionFrame;
 
 entry!(main);
 
 fn main() -> ! {
-    let p = stm32f4::Peripherals::take().unwrap();
+    let p = stm32f401::Peripherals::take().unwrap();
 
-    let mut rcc = p.RCC.constrain();
-    let gpioe = p.GPIOE.split(&mut rcc.ahb);
+    let gpiod = p.GPIOD.split();
 
-    let mut leds = Leds::new(gpioe);
+    let mut leds = Leds::new(gpiod);
 
     for led in leds.iter_mut() {
         led.on();
